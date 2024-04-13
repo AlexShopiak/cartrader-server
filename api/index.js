@@ -23,6 +23,7 @@ const __dirname = path.resolve();
 const app = express();
 
 app.use(cors({
+  origin: 'https://cartrader.onrender.com',
   credentials: true
 }));//allow everyone
 
