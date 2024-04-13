@@ -22,9 +22,7 @@ const __dirname = path.resolve();
 
 const app = express();
 
-app.use(cors({
-  credentials: true
-}));//allow everyone
+app.use(cors());//allow everyone
 
 app.use(express.json());
 
