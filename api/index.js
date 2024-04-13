@@ -6,6 +6,7 @@ import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+const cors = require('cors');
 dotenv.config();
 
 mongoose
@@ -17,9 +18,11 @@ mongoose
     console.log(err);
   });
 
-  const __dirname = path.resolve();
+const __dirname = path.resolve();
 
 const app = express();
+
+app.use(cors());//allow everyone
 
 app.use(express.json());
 
@@ -27,11 +30,6 @@ app.use(cookieParser());
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000!');
-});
-
-app.get('/hello', (req, res) => {
-  res.send('Hello, world!');
-  console.log("Query to HEllo")
 });
 
 app.use('/api/user', userRouter);
