@@ -35,7 +35,7 @@ app.use(cookieParser());
 // GET-запрос каждые 5 минут по указанной ссылке
 async function makeRequest() {
   try {
-    const res = await axios.get('https://pinger1.onrender.com/');
+    const res = await axios.get('https://cartrader-api.onrender.com/api/listing/get');
     console.log('Запрос прошел успешно:', res.status);
     console.log('===============================');
   } catch (error) {
