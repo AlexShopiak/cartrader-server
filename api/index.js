@@ -31,6 +31,19 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+// GET-запрос каждые 5 минут по указанной ссылке
+async function makeRequest() {
+  try {
+    const res = await axios.get('https://pinger1.onrender.com/');
+    console.log('Запрос прошел успешно:', res.status);
+    console.log('===============================');
+  } catch (error) {
+    console.error('Ошибка при выполнении запроса:', error.message);
+  }
+}
+// Выполнение запроса каждые 10 cек 
+setInterval(makeRequest, 10*1000);
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000!');
 });
