@@ -7,6 +7,7 @@ import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import cors from 'cors';
+import axios from 'axios';
 dotenv.config();
 
 mongoose
