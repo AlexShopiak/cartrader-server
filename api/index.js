@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-setInterval(pingMyself, 5*60*1000);
+//setInterval(pingMyself, 5*60*1000);
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
