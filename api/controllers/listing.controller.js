@@ -72,16 +72,16 @@ export const getListings = async (req, res, next) => {
       offer = { $in: [false, true] };
     }
 
-    let furnished = req.query.furnished;
+    let used = req.query.used;
 
-    if (furnished === undefined || furnished === 'false') {
-      furnished = { $in: [false, true] };
+    if (used === undefined || used === 'false') {
+      used = { $in: [false, true] };
     }
 
-    let parking = req.query.parking;
+    let warranty = req.query.warranty;
 
-    if (parking === undefined || parking === 'false') {
-      parking = { $in: [false, true] };
+    if (warranty === undefined || warranty === 'false') {
+      warranty = { $in: [false, true] };
     }
 
     let type = req.query.type;
@@ -99,8 +99,8 @@ export const getListings = async (req, res, next) => {
     const listings = await Listing.find({
       name: { $regex: searchTerm, $options: 'i' },
       offer,
-      furnished,
-      parking,
+      used,
+      warranty,
       type,
     })
       .sort({ [sort]: order })
