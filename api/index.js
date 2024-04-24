@@ -32,17 +32,21 @@ app.use(cookieParser());
 
 setInterval(pingMyself, 5*60*1000);
 
-app.use((req, res, next) => {
-  const ip = req.ip;
-  console.log('IP Address:', ip);
-  const newIp = new Visitor({ ipAddress: ip });
-  newIp.save(); // Сохраняем IP-адрес в базу данных
-  next();
-});
-
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
+app.post('/api/visitor', async (req, res) => {
+  try {
+    const ipAddress = req.body.ipAddress;
+    console.log('IP Address:', ipAddress);
+    const newIp = new Visitor({ ipAddress });
+    await newIp.save();
+    res.send({ success: true });
+  } catch (error) {
+    console.error('Ошибка:', error);
+    res.status(500).send({ success: false, error: error.message });
+  }
+});
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000!');
