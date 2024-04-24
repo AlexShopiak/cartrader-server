@@ -7,6 +7,7 @@ import listingRouter from './routes/listing.route.js';
 import {pingMyself} from './utils/ping.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import Visitor from './models/visitor.model.js';
 dotenv.config();
 
 mongoose
@@ -30,6 +31,14 @@ app.use(express.json());
 app.use(cookieParser());
 
 setInterval(pingMyself, 5*60*1000);
+
+app.use((req, res, next) => {
+  const ip = req.ip;
+  console.log('IP Address:', ip);
+  const newIp = new IpModel({ ipAddress: ip });
+  newIp.save(); // Сохраняем IP-адрес в базу данных
+  next();
+});
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
