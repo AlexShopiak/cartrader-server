@@ -35,7 +35,7 @@ setInterval(pingMyself, 5*60*1000);
 app.use((req, res, next) => {
   const ip = req.ip;
   console.log('IP Address:', ip);
-  const newIp = new IpModel({ ipAddress: ip });
+  const newIp = new Visitor({ ipAddress: ip });
   newIp.save(); // Сохраняем IP-адрес в базу данных
   next();
 });
