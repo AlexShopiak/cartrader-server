@@ -30,7 +30,8 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-setInterval(pingMyself, 5*60*1000);
+//Pinging stopped because of unexpected DB trottling in osl. Resume in case of current DB disuse in the osl
+//setInterval(pingMyself, 5*60*1000);
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
